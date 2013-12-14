@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = [""]
   spec.description   = %q{A basic Ruby wrapper for the League of Legends API.}
   spec.summary       = %q{A basic Ruby wrapper for the League of Legends API.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/Illianthe/lolbase"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

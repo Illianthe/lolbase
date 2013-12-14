@@ -2,11 +2,14 @@
 
 A basic Ruby wrapper for the League of Legends API.
 
+* GitHub: [https://github.com/Illianthe/lolbase](https://github.com/Illianthe/lolbase)
+* RubyGems: [https://rubygems.org/gems/lolbase](https://rubygems.org/gems/lolbase)
+
 ## Installation
 
 Add this line to your application's Gemfile:
 
-	gem 'lolbase', :github => 'illianthe/lolbase'
+	gem 'lolbase'
 
 And in the console, execute:
 
