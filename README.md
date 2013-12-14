@@ -22,8 +22,11 @@ And in the console, execute:
 LoLBase can be globally configured through the *LoLBase::configure* method. The values shown are the defaults set by the gem.
 
 	LoLBase.configure do |config|
-	  config.default_region = "na"
-	  config.default_key = nil
+	  config.default_region = "na"    # Default region for summoner lookup
+	  config.default_key = nil        # Default API key
+
+	  # Latest versions of the API provided by Riot. These values can 
+	  # be changed for backward compatibility.
 	  config.version_champion = "1.1"
       config.version_game = "1.1"
       config.version_league = "2.1"
@@ -52,10 +55,9 @@ All connections begin by calling *LoLBase::new* which takes an API key as an arg
 	summoner.id
 	summoner.name
 	summoner.region
-	summoner.profileIconId
-	summoner.revisionDate
-	summoner.revisionDateStr
-	summoner.summonerLevel
+	summoner.level
+	summoner.profile_icon_id
+	summoner.last_modified
 
 ## To Do
 

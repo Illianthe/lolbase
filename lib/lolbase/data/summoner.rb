@@ -2,7 +2,7 @@ require "json"
 
 module LoLBase
   class Summoner
-    attr_reader :id, :name, :profileIconId, :revisionDate, :revisionDateStr, :summonerLevel, :region
+    attr_reader :id, :name, :profile_icon_id, :last_modified, :level, :region
 
     # Input
     # - params - A hash containing either a summoner name or ID and the region that they belong to
@@ -31,10 +31,9 @@ module LoLBase
       data = JSON.parse(response)
       @id = data["id"]
       @name = data["name"]
-      @profileIconId = data["profileIconId"]
-      @revisionDate = data["revisionDate"]
-      @revisionDateStr = data["revisionDateStr"]
-      @summonerLevel = data["summonerLevel"]
+      @profile_icon_id = data["profileIconId"]
+      @last_modified = Time.at(data["revisionDate"] / 1000)
+      @level = data["summonerLevel"]
 
       self
     end
