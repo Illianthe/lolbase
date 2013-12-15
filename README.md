@@ -1,4 +1,4 @@
-# LoLBase
+# LoLBase [![Build Status](https://travis-ci.org/Illianthe/lolbase.png?branch=master)](https://travis-ci.org/Illianthe/lolbase) [![Code Climate](https://codeclimate.com/github/Illianthe/lolbase.png)](https://codeclimate.com/github/Illianthe/lolbase) [![Gem Version](https://badge.fury.io/rb/lolbase.png)](http://badge.fury.io/rb/lolbase)
 
 A basic Ruby wrapper for the League of Legends API.
 
