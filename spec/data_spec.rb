@@ -13,7 +13,7 @@ describe "LoLBase Data" do
       illianthe = @connection.summoner("illianthe")
       expect(illianthe.id).to eq(19578577)
       expect(illianthe.name).to eq("Illianthe")
-      expect(illianthe.profile_icon_id).to eq(539)
+      expect(illianthe.profile_icon.id).to eq(539)
       expect(illianthe.last_modified).to eq(Time.at(1386988105))
       expect(illianthe.level).to eq(30)
       expect(illianthe.region).to eq("na")

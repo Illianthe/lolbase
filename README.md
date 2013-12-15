@@ -56,23 +56,12 @@ All connections begin by calling *LoLBase::new* which takes an API key as an arg
 	summoner.name
 	summoner.region
 	summoner.level
-	summoner.profile_icon_id
 	summoner.last_modified
 
-## To Do
+#### 3.2 Profile Icon
 
-This gem is still missing a lot of functionality, but most of it will be added over time.
+	summoner.profile_icon.id
 
-* Champion list
-* Recent games
-* League data
-* Stats
-  * Summary
-  * Ranked
-* Summoner
-  * Masteries
-  * Runes
-  * ~~Find by name~~
-  * ~~Find by ID~~
-  * List of names by ID
-* Teams
+## Resources
+
+* Official API Reference: [https://developer.riotgames.com/api/methods](https://developer.riotgames.com/api/methods) 
