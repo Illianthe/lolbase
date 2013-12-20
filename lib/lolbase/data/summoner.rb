@@ -2,29 +2,33 @@ require "json"
 
 module LoLBase
   class Summoner
-    attr_reader :id, :name, :profile_icon, :last_modified, :level, :region
+    attr_reader :id, :name, :last_modified, :level, :region
 
     # Input
-    # - params - A hash containing either a summoner name or ID and the region that they belong to
-    #   (e.g. { id: 123, region: "na" })
+    # - params - A hash containing either a summoner name or ID, the region that they belong to,
+    #   and whether to preload the object with Riot's data (e.g. { id: 123, region: "na", preload: false })
     # - connection - Current connection to the Riot API
     #
-    # Effects: Calls the Riot API to retrieve data for the given summoner
-    #
-    # Output: Returns the Summoner class for further chaining
+    # Output: Returns a Summoner object for further chaining
     def initialize(params, connection)
       @id = params[:id]
       @name = params[:name]
       @region = params[:region]
       @connection = connection
 
+      load unless params[:preload] == false
+
+      self
+    end
+
+    def load
       response =
         if !@id.nil?
           # Find summoner by ID
-          connection.get "/api/lol/#{@region}/v#{LoLBase.config.version_summoner}/summoner/#{@id}"
+          @connection.get "/api/lol/#{@region}/v#{LoLBase.config.version_summoner}/summoner/#{@id}"
         else
           # Find summoner by name
-          connection.get "/api/lol/#{@region}/v#{LoLBase.config.version_summoner}/summoner/by-name/#{@name}"
+          @connection.get "/api/lol/#{@region}/v#{LoLBase.config.version_summoner}/summoner/by-name/#{@name}"
         end
 
       # Populate object with response data
@@ -34,8 +38,14 @@ module LoLBase
       @profile_icon = ProfileIcon.new data["profileIconId"], self
       @last_modified = Time.at(data["revisionDate"] / 1000)
       @level = data["summonerLevel"]
+    end
 
-      self
+    def profile_icon
+      return @profile_icon || ProfileIcon.new(nil, self)
+    end
+
+    def stats
+      return @stats || Stats.new(self, @connection)
     end
   end
 end

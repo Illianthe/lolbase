@@ -5,6 +5,7 @@ module LoLBase
     def initialize(id, summoner)
       @id = id
       @summoner = summoner
+      self
     end
   end
 end

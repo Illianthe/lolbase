@@ -25,14 +25,16 @@ LoLBase can be globally configured through the *LoLBase::configure* method. The 
 	  config.default_region = "na"    # Default region for summoner lookup
 	  config.default_key = nil        # Default API key
 
-	  # Latest versions of the API provided by Riot. These values can 
-	  # be changed for backward compatibility.
+	  # Determines which API version to use
 	  config.version_champion = "1.1"
-      config.version_game = "1.1"
-      config.version_league = "2.1"
-      config.version_stats = "1.1"
-      config.version_summoner = "1.1"
-      config.version_team = "2.1"
+      config.version_game = "1.2"
+      config.version_league = "2.2"
+      config.version_stats = "1.2"
+      config.version_summoner = "1.2"
+      config.version_team = "2.2"
+
+      # Current season - used as a default value for ranked stats
+      config.current_season = "3"
 	end
 
 ### 2. Connection
@@ -61,6 +63,16 @@ All connections begin by calling *LoLBase::new* which takes an API key as an arg
 #### 3.2 Profile Icon
 
 	summoner.profile_icon.id
+
+#### 3.3 Statistics
+
+	# A specified ranked season is passed - defaults to LoLBase.config.current_season
+	summary = summoner.stats.summary(3)    
+	ranked = summoner.stats.ranked(3)
+
+	# JSON data from the API is returned, parsed as a Ruby object
+	summary["playerStatSummaries"]
+	ranked["champions"]
 
 ## Resources
 

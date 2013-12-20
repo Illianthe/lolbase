@@ -5,3 +5,4 @@ require "lolbase/version"
 
 require "lolbase/data/summoner"
 require "lolbase/data/profile_icon"
+require "lolbase/data/stats"
