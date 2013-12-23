@@ -12,6 +12,8 @@ module LoLBase
     end
 
     def find(criteria = {})
+      raise InvalidArgumentError if criteria.class != Hash
+
       if criteria[:id]
         return @champions.select { |champ| champ.id == criteria[:id] }.first
       elsif criteria[:name]

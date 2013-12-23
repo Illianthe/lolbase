@@ -1,7 +1,15 @@
 language: ruby
 
 rvm:
-  - 1.9.3
-  - 2.0.0
+- 1.9.3
+- 2.0.0
 
 script: bundle exec rspec spec
+
+deploy:
+  provider: rubygems
+  api_key:
+    secure: dkuO+YOJo2ylm/ipkCdz/OVENYo/B1e6ai44sKBleKYEbkxwRifh/jEaXcA8KKwhmcVVcQEoodUZD0lKdzcEdi5YMyzoGqdLeSwsSslNaMvbsYKH0C3h1WQlh2fHL3rRyrUhEQ+V9BxXbjWvPUa9OQUrHW/jP4TZ4yVO1yNskl8=
+  gem: lolbase
+  on:
+    repo: Illianthe/lolbase

@@ -37,10 +37,12 @@ module LoLBase
     end
 
     def summoner_by_name(name, region = LoLBase.config.default_region)
+      raise InvalidArgumentError if !name.is_a?(String)
       Summoner.new({ name: name, region: region }, self)
     end
 
     def summoner_by_id(id, region = LoLBase.config.default_region)
+      raise InvalidArgumentError if !id.is_a?(Integer)
       Summoner.new({ id: id, region: region }, self)
     end
 

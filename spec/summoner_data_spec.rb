@@ -19,6 +19,10 @@ describe LoLBase::Summoner do
     expect(@illianthe.profile_icon.id).to eq(539)
   end
 
+  it "should allow for summoner lookups by ID" do
+    summoner = @connection.summoner(19578577)
+  end
+
   context "Stats" do
     it "should return a generic Stats object when called without arguments" do
       expect(@illianthe.stats.class).to eq(LoLBase::Stats)

@@ -33,4 +33,8 @@ describe LoLBase::Champion do
     f2p = @connection.champions.find(free_to_play: true)
     expect(f2p.count).to eq(10)
   end
+
+  it "should throw an error when trying to find a champion with invalid parameters" do
+    expect { @connection.champions.find("free") }.to raise_error(LoLBase::InvalidArgumentError)
+  end
 end

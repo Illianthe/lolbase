@@ -38,4 +38,12 @@ describe LoLBase::Stats do
     overall = @illianthe.stats.ranked.overall
     expect(overall["totalDamageTaken"]).to eq(583858)
   end
+
+  it "should throw an error when trying to filter stats with an invalid parameter" do
+    ranked = @illianthe.stats.ranked
+    expect { ranked.find("Criteria") }.to raise_error(LoLBase::InvalidArgumentError)
+
+    summary = @illianthe.stats.summary
+    expect { summary.find("Blah") }.to raise_error(LoLBase::InvalidArgumentError)
+  end
 end

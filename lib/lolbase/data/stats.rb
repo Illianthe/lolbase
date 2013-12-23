@@ -14,19 +14,26 @@ module LoLBase
     end
 
     def summary(season = LoLBase.config.current_season)
-      response = @connection.get(
-        "/api/lol/#{@summoner.region}/v#{LoLBase.config.version_stats}/stats/by-summoner/#{@summoner.id}/summary",
-        { query: { season: "SEASON#{season}" } }
-      )
-      SummaryStats.new response
+      fetch_stats(:summary, season)
     end
 
     def ranked(season = LoLBase.config.current_season)
+      fetch_stats(:ranked, season)
+    end
+
+  private
+
+    def fetch_stats(type, season)
       response = @connection.get(
-        "/api/lol/#{@summoner.region}/v#{LoLBase.config.version_stats}/stats/by-summoner/#{@summoner.id}/ranked",
+        "/api/lol/#{@summoner.region}/v#{LoLBase.config.version_stats}/stats/by-summoner/#{@summoner.id}/#{type}",
         { query: { season: "SEASON#{season}" } }
       )
-      RankedStats.new response
+
+      if type == :summary
+        return SummaryStats.new response
+      elsif type == :ranked
+        return RankedStats.new response
+      end
     end
   end
 
@@ -52,6 +59,7 @@ module LoLBase
     end
 
     def find(criteria = {})
+      raise InvalidArgumentError if criteria.class != Hash
       if criteria[:name]
         return @parsed_data.select { |item| item.name == criteria[:name] }.first
       end
@@ -102,6 +110,7 @@ module LoLBase
     end
 
     def find(criteria = {})
+      raise InvalidArgumentError if criteria.class != Hash
       if criteria[:champion_id]
         return @parsed_data.select { |item| item.id == criteria[:champion_id] }.first
       end
