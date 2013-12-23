@@ -52,11 +52,10 @@ module LoLBase
     end
 
     def find(criteria = {})
-      if criteria[:name].nil?
-        @parsed_data
-      else
-        @parsed_data.select { |item| item.name == criteria[:name] }.first
+      if criteria[:name]
+        return @parsed_data.select { |item| item.name == criteria[:name] }.first
       end
+      nil
     end
 
     def all
@@ -103,11 +102,10 @@ module LoLBase
     end
 
     def find(criteria = {})
-      if criteria[:champion_id].nil?
-        @parsed_data
-      else
-        @parsed_data.select { |item| item.id == criteria[:champion_id] }.first
+      if criteria[:champion_id]
+        return @parsed_data.select { |item| item.id == criteria[:champion_id] }.first
       end
+      nil
     end
 
     def all

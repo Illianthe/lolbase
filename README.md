@@ -45,7 +45,23 @@ All connections begin by calling *LoLBase::new* which takes an API key as an arg
 
 ### 3. Data Retrieval
 
-#### 3.1 Summoner
+#### 3.1 Champion
+
+	# Fetch a list of all the champions in the game
+	champions = connection.champions.all
+
+	# Find a specific subset of champions
+	f2p_champs = connection.champions.find(free_to_play: true)
+	champ = connection.champions.find(id: 99)
+	champ = connection.champions.find(name: "Lux")
+
+	# Given a single champion, retrieve details about it
+	champ.id
+	champ.name
+	champ.status    # Check whether it is enabled in a given queue
+	champ.stats     # Ratings for attributes/difficulty
+
+#### 3.2 Summoner
 
 	# Fetch a summoner by their name...
 	summoner = connection.summoner("A Summoner Name", "na")
@@ -60,11 +76,11 @@ All connections begin by calling *LoLBase::new* which takes an API key as an arg
 	summoner.level
 	summoner.last_modified
 
-#### 3.2 Profile Icon
+#### 3.3 Profile Icon
 
 	summoner.profile_icon.id
 
-#### 3.3 Statistics
+#### 3.4 Statistics
 
 	# A specified ranked season is passed - defaults to LoLBase.config.current_season
 	summary = summoner.stats.summary(3)    

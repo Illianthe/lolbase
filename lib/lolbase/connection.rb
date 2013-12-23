@@ -37,11 +37,15 @@ module LoLBase
     end
 
     def summoner_by_name(name, region = LoLBase.config.default_region)
-      return Summoner.new({ name: name, region: region }, self)
+      Summoner.new({ name: name, region: region }, self)
     end
 
     def summoner_by_id(id, region = LoLBase.config.default_region)
-      return Summoner.new({ id: id, region: region }, self)
+      Summoner.new({ id: id, region: region }, self)
+    end
+
+    def champions(region = LoLBase.config.default_region)
+      ChampionList.new(region, self)
     end
   end
 end
