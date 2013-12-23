@@ -44,8 +44,18 @@ module LoLBase
       return @profile_icon || ProfileIcon.new(nil, self)
     end
 
-    def stats
-      return @stats || Stats.new(self, @connection)
+    # Return stats for the given summoner. Syntactic sugar for retrieving summary
+    # or ranked stats.
+    def stats(type = nil)
+      @stats ||= Stats.new(self, @connection)
+
+      if type == :summary
+        return @stats.summary
+      elsif type == :ranked
+        return @stats.ranked
+      else
+        return @stats
+      end
     end
   end
 end

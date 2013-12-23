@@ -70,9 +70,24 @@ All connections begin by calling *LoLBase::new* which takes an API key as an arg
 	summary = summoner.stats.summary(3)    
 	ranked = summoner.stats.ranked(3)
 
-	# JSON data from the API is returned, parsed as a Ruby object
-	summary["playerStatSummaries"]
-	ranked["champions"]
+	# Retrieve the stats summary for a particular queue type
+	aram = summary.find(name: "AramUnranked5x5")
+	aram.stats["wins"]
+	aram.last_modified
+
+	# Retrieve all recorded stats summaries
+	summary.all
+
+	# Retrieve the ranked stats for a particular champion
+	lux = ranked.find(champion_id: 99)
+	games_played = lux.stats["totalSessionsPlayed"]
+
+	# Retrieve the ranked stats for all champions
+	ranked.all
+
+	# Aggregated stats for ranked play
+	ranked.overall
+	ranked.last_modified
 
 ## Resources
 
